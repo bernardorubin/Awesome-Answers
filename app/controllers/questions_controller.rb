@@ -8,6 +8,7 @@ class QuestionsController < ApplicationController
   # request/response cycle which means if you define an instance variable in
   # the `before_action` method, the variable will be available in the action
   before_action(:find_question, { only: [:show, :edit, :destroy, :update] })
+  before_action :authorize, only: [:edit, :destroy, :update]
 
   def new
     @question = Question.new
@@ -40,6 +41,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -64,6 +66,15 @@ class QuestionsController < ApplicationController
 
   def find_question
     @question = Question.find params[:id]
+  end
+
+  def authorize
+    # `can?` and `cannot?` are helper methods that are available in controllers
+    # and views that came from the `cancancan` gem and it will check in the
+    # `ability.rb` file for a matching rule.
+    if cannot?(:manage, @question)
+      redirect_to root_path, alert: 'Not authorized!'
+    end
   end
 
 end

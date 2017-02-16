@@ -12,6 +12,15 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
 
+  # this will make the url structure follow the folder structure of the
+  # controllers inside. For instance, the code below will generate a url that
+  # looks like `/admin/dashboard` that will map to `admin/dashboard` controller
+
+  # resources :dashboard, only: [:index], controller: 'admin/dashboard'
+  namespace :admin do
+    resources :dashboard, only: [:index]
+  end
+
   # the above route maps any `GET` request with `/` URL to the index action
   # within the WelcomeController (action is a method defined within the
   # controller class)
