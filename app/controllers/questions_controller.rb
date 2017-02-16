@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :authenticate_user!, except: [:show, :index]
+
   # this will execute the method `find_question` before it executes the action
   # if you give it `only` or `except` options then it will only include or only
   # exclude certain actions
@@ -14,6 +16,7 @@ class QuestionsController < ApplicationController
 
   def create
     @question  = Question.new(question_params)
+    @question.user = current_user
     if @question.save
       # render :show
       # redirect_to question_path({ id: @question.id })
@@ -29,6 +32,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @answer = Answer.new
   end
 
   def index
@@ -40,7 +44,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update question_params
-      redirect_to question_path(@question), notice: 'Question updated!'
+      redirect_to question_path(@question), notice: 'Product updated!'
     else
       render :edit
     end

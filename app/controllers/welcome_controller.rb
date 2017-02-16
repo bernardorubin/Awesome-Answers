@@ -2,6 +2,11 @@ class WelcomeController < ApplicationController
   # this is the Index action
   # GET '/'
   def index
+    # assign if this is nil or not provided with ||=
+    # cookies[:user_id] ||= rand(100)
+    # session[:user_id] = rand(100)
+    # session[:other] = rand(100)
+    # session[:whatever] = rand(100)
     # render({plain: 'Hello World!'})
     # render plain: 'Hello World!'
 

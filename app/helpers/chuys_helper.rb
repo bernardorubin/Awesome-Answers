@@ -1,0 +1,2 @@
+module ChuysHelper
+end
