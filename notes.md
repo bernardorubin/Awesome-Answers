@@ -42,3 +42,14 @@ create layout
 
 
 hits public, then goes to routes
+hash -> same input, same output
+
+
+minimize requests - > combine all files into one
+
+rails assets:precompile -> not needed but joins files
+
+
+
+Deploy to heroku ->
+      a little more expensive
